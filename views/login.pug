@@ -1,0 +1,62 @@
+link#bootstrap-css(href='//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' rel='stylesheet')
+script(src='//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js')
+script(src='//code.jquery.com/jquery-1.11.1.min.js')
+link(rel='stylesheet', href='/main.css')
+// ---- Include the above in your HEAD tag --------
+.container
+  .kpx_login
+    h3.kpx_authTitle
+      | Login or 
+      a(href='/auth/join') Sign up
+    .row.kpx_row-sm-offset-3.kpx_socialButtons
+      .col-xs-2.col-sm-2
+        a.btn.btn-lg.btn-block.kpx_btn-facebook(href='/auth/facebook' data-toggle='tooltip' data-placement='top' title='Facebook')
+          i.fa.fa-facebook.fa-2x
+          span.hidden-xs
+      .col-xs-2.col-sm-2
+        a.btn.btn-lg.btn-block.kpx_btn-kakao(href='/auth/kakao' data-toggle='tooltip' data-placement='top' title='Kakao')
+          i.fa.fa-font.fa-2x
+          span.hidden-xs
+      .col-xs-2.col-sm-2
+        a.btn.btn-lg.btn-block.kpx_btn-google-plus(href='/auth/google' data-toggle='tooltip' data-placement='top' title='Google')
+          i.fa.fa-google.fa-2x
+          span.hidden-xs
+    br
+    .row.kpx_row-sm-offset-3.kpx_loginOr
+      .col-xs-12.col-sm-6
+        hr.kpx_hrOr
+        span.kpx_spanOr or
+    .row.kpx_row-sm-offset-3
+      .col-xs-12.col-sm-6
+        form.kpx_loginForm(action='' autocomplete='off' method='POST')
+          .input-group
+            span.input-group-addon
+              span.fa.fa-user
+            input.form-control(type='text' name='username' placeholder='Username')
+          hr
+          .input-group
+            span.input-group-addon
+              span.fa.fa-key
+            input.form-control(type='password' name='password' placeholder='Password')
+          hr
+          button.btn.btn-lg.btn-outline-primary.btn-block(type='submit')
+            i.fa.fa-sign-in
+            |  Login
+    .row.kpx_row-sm-offset-3
+      .col-xs-12.col-sm-3
+        p
+        label.custom-control.custom-checkbox
+          input.custom-control-input(type='checkbox' value='remember-me')
+          span.custom-control-indicator
+          span.custom-control-description Remember me!
+        p
+      .col-xs-12.col-sm-3
+      .col-lg-12
+        p.text-lg-center.text-md-center.text-sm-center.text-xs-center
+          | Created by 
+          a(href='http://www.koalapix.com' target='_blank') koalapix. studio
+          | , for crazy developers...
+script.
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+  })
