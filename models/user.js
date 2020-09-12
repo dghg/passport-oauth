@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
 	return sequelize.define('user', {
-		id: {
+		user_id: {
 		  type: DataTypes.STRING(40),
 		  allowNull: false,
 		  unique: true,
@@ -9,18 +9,20 @@ module.exports = (sequelize, DataTypes) => {
 		  type: DataTypes.STRING(15),
 			allowNull: false,
 		},
-		money: {
-		  type: DataTypes.INTEGER,
+		provider: {
+		  type: DataTypes.STRING(10),
 		  allowNull: false,
-		  defaultValue: 0,
+		  defaultValue: 'local',
 		},
 		password : {
 			type: DataTypes.STRING(100),
-			allowNull: false,
+			allowNull: true,
 		}
 	},{
 		timestamps: true,
 		paranoid: true,
-	})
+		charset:'utf8', 
+		collate:'utf8_general_ci',
+	});
 };
 
