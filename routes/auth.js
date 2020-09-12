@@ -69,8 +69,8 @@ router.get('/kakao/callback' , passport.authenticate('kakao', {
 });
 
 // FB OAuth
-router.get('/facebook');
-router.get('/facebook/callback');
+router.get('/auth/facebook', passport.authenticate('facebook'));
+router.get('/facebook/callback', passport.authenticate('facebook'));
 
 //Google OAuth
 router.get('/google');

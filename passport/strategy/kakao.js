@@ -12,15 +12,15 @@ module.exports = (passport) => {
 		callbackURL: "http://a3a3a.run.goorm.io/auth/kakao/callback",
 	}, async (accessToken, refreshToken, profile, done) => {
 		try {
-			let user = await User.findOne({where : {user_id:profile.id}});
+			const { id, displayName } = profile;
+			let user = await User.findOne({where : {user_id:id}});
 			if(!user) { // create user
  				user = await User.create({
-					user_id: profile.id,
-					nick: profile.displayName,
+					user_id: id,
+					nick: displayName,
 					provider: 'kakao',
 				});
 			}
-			console.log(profile.displayName+' Kakao.');
 			done(null, user);
 			
 		} catch(err) {
