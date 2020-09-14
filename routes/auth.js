@@ -73,7 +73,6 @@ router.get('/google', passport.authenticate('google', { scope : ['profile'] }));
 router.get('/google/callback', 
   passport.authenticate('google', { failureRedirect: '/' }),
   function(req, res) {
-    // Successful authentication, redirect home.
     res.redirect('/');
   });
 
