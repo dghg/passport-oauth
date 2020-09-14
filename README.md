@@ -1,23 +1,28 @@
 # nodejs passport authentication
 
 ## DB(Mysql)
- - USER(email, 이름, )
+ - USER
+  - id : primary key
+  - user_id : id
+  - nick : nickname
+  - password : password ( null if social login)
+  - provider : local / kakao/ facebook/ google
  
 ## Router
  - #### GET
   - GET / : Request의 authentication 여부 확인 후 로그인 또는 메인 렌더링
   - GET /join : 회원가입 페이지 렌더링
   - GET /logout : 로그아웃
+  - GET /auth/kakao : kakao 인증
+  - GET /auth/facebook : 페이스북 인증
+  - GET /auth/google : 구글 인증
  - #### POST
    - POST /auth/join : 회원가입 수행
    - POST /auth/login : Localstrategy 로그인 수행
-   - POST /auth/kakao : Kakao 인증 수행
-   - POST /auth/google
-   - POST /auth/facebook
 
 ## Strategy
  - local strategy
- - facebook
+ - facebook(https 필요)
  - kakao
  - google
  
