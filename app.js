@@ -5,8 +5,12 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
 const logger = require('./logger');
+const helmet = require('helmet');
 require('dotenv').config();
+
 const { sequelize } = require('./models');
+const redis = require('connect-redis');
+
 const passportConfig = require('./passport');
 passportConfig(passport);
 
@@ -18,6 +22,8 @@ const app = express();
 
 // DB
 sequelize.sync();
+//redis
+redis(session);
 
 app.use(session({
   resave: false,
@@ -27,7 +33,14 @@ app.use(session({
     httpOnly: true,
     secure: false,
   },
+  store: new redis({
+	 host: process.env.REDIS_HOST,
+	 port: process.env.REDIS_PORT,
+	 pass: process.env.REDIS_PASSWORD,
+	 logErrors: true,
+  }),
 }));
+app.use(helmet());
 
 // rendering setting
 app.set('views', path.join(__dirname, 'views'));
