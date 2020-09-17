@@ -9,7 +9,7 @@ const helmet = require('helmet');
 require('dotenv').config();
 
 const { sequelize } = require('./models');
-const redis = require('connect-redis');
+const redis = require('connect-redis')(session);
 
 const passportConfig = require('./passport');
 passportConfig(passport);
@@ -22,8 +22,6 @@ const app = express();
 
 // DB
 sequelize.sync();
-//redis
-redis(session);
 
 app.use(session({
   resave: false,
