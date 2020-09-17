@@ -42,8 +42,11 @@ app.use(session({
 	 logErrors: true,
   }),
 }));
-app.use(helmet());
-
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+  })
+);
 // rendering setting
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
