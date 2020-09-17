@@ -9,7 +9,13 @@ const helmet = require('helmet');
 require('dotenv').config();
 
 const { sequelize } = require('./models');
-const redis = require('connect-redis')(session);
+const redis = require('redis');
+const redisStore = require('connect-redis')(session);
+const client = redis.createClient({
+	host: process.env.REDIS_HOST,
+	port: process.env.REDIS_PORT,
+	password: process.env.REDIS_PASSWORD,
+});
 
 const passportConfig = require('./passport');
 passportConfig(passport);
@@ -31,10 +37,8 @@ app.use(session({
     httpOnly: true,
     secure: false,
   },
-  store: new redis({
-	 host: process.env.REDIS_HOST,
-	 port: process.env.REDIS_PORT,
-	 pass: process.env.REDIS_PASSWORD,
+  store: new redisStore({
+	 client,
 	 logErrors: true,
   }),
 }));
